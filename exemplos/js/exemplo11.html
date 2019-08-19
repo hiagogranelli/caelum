@@ -1,0 +1,24 @@
+<meta charset="utf-8" />
+<h1>AJAX MAIS NUTELLA AINDA</h1>
+<button id="btnCarregar">Carregar conteúdo</button>
+<div id="conteudoCarregado">
+    <!-- Conteúdo será carregado aqui -->
+</div>
+<script>
+
+    const btnCarregar = document.querySelector('#btnCarregar');
+    const conteudoCarregado = document.querySelector('#conteudoCarregado');
+    btnCarregar.addEventListener('click', async () => {
+        try {
+            const response = await fetch('https://jhonatanjacinto.com/teste.php')
+            const respostaHTML = await response.text();
+            conteudoCarregado.innerHTML = respostaHTML;
+        }
+        catch (e) {
+            console.error(e)
+        }
+
+    });
+    conteudoCarregado.innerHTML = 'Carregando a parada toda...';
+
+</script>

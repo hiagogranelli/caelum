@@ -1,0 +1,119 @@
+<meta charset="utf-8" />
+<h1>JS: manipulação da DOM</h1>
+<form action="" id="form1">
+    <div class="campo">
+        <label for="">
+            * Nome:
+            <br>
+            <input type="text" class="obrigatorio" data-mensagem="Nome é obrigatório!">
+        </label>
+    </div>
+    <div class="campo">
+        <label for="">
+            * E-mail:
+            <br>
+            <input type="text" class="obrigatorio" data-mensagem="E-mail é obrigatório!">
+        </label>
+    </div>
+    <div class="campo">
+        <label for="">
+            * Telefone:
+            <br>
+            <input type="text" class="">
+        </label>
+    </div>
+    <div class="campo">
+        <button type="submit">
+            Enviar
+        </button>
+    </div>
+</form>
+
+<style>
+    body {
+        padding: 60px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    form {
+        width: 400px;
+        margin-top: 20px;
+    }
+    input[type=text] {
+        width: 100%;
+        border:  1px solid #ccc;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+    button {
+        border-radius: 5px;
+        border: none;
+        background: green;
+        color: #fff;
+        padding: 15px 35px;
+    }
+    .campo {
+        margin-bottom: 10px;
+    }
+    .msg {
+        padding: 15px 25px;
+        border-radius: 5px;
+        background: #f2f2f2;
+        border: 1px solid #ddd;
+    }
+    .msg-error, input.destacar {
+        border-color: #db2323;
+        color: #db2323;
+        background: #fff0f0;
+        margin-bottom: 10px;    
+    }
+    .msg-success {
+        border-color: #30cf6c;
+        color: #30cf6c;
+        background: #e3ffee;
+        margin-bottom: 10px;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    const divMsg = $('<div class="msg msg-error"></div>')
+    $('#form1').on('submit', function(event){
+        event.preventDefault(); // bloqueia o envio do formulario
+        const camposObrigatorios = $('.obrigatorio', this);
+        let isFormValido = true;
+        const msgErro = [];
+        camposObrigatorios.each((index, campo) => {
+            let isVazio = $(campo).val().trim().length === 0;
+            if (isVazio) {
+                $(campo).addClass('destacar');
+                isFormValido = false;
+                let mensagem = $(campo).data('mensagem');
+                msgErro.push(mensagem);
+            }
+            else {
+                $(campo).removeClass('destacar');
+            }
+        });
+        if (isFormValido === false) {
+            divMsg.removeClass('msg-success').addClass('msg-error');
+            divMsg.html(`
+            <b>Atenção</b><br>
+            Preencha os campos sinalizados!<br>
+            ${msgErro.join('<br>')}
+            `)
+        }
+        else {
+            divMsg.removeClass('msg-error').add('msg-success');
+            divMsg.html(`
+            Formulário enviado com sucesso!
+            `);
+        }
+        $('#form1').prepend(divMsg);
+    });
+
+
+
+
+    // on() é equivalente ao addEventListener()
+</script>

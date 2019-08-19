@@ -1,0 +1,37 @@
+<meta charset="utf-8" />
+<h1>jQuery: Seletores</h1>
+<style>
+    p {
+        padding: 15px;
+        border-radius: 5px;
+        background: #eee;
+        border: 1px solid #aaa;
+    }
+    .red {
+        border-color: #db2323;
+        color: #db2323;
+        background-color: #fff0f0;
+    }
+</style>
+<p>Parágrafo 1</p>
+<p class="red">Parágrafo 2</p>
+<p>Parágrafo 3</p>
+<p>Parágrafo 4</p>
+<p class="red">Parágrafo 5</p>
+<p>Parágrafo 6</p>
+<p class="red">Parágrafo 7</p>
+<p>Parágrafo 8</p>
+<p>Parágrafo 9</p>
+<p id="p10">Parágrafo 10</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    
+    //const $j = jQuery.noConflict();
+    $('#p10').text('Modificado')
+    $('.red').text('Modificando classe RED').css({
+        'font-style' : 'italic',
+        'font-size' : '30px',
+        'font-weight' : 'bold'
+    })
+</script>

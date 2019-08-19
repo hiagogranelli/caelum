@@ -1,0 +1,45 @@
+<meta charset="utf-8" />
+<h1>jQuery: Manipulação de classes</h1>
+<style>
+    button {
+        background-color: #ddd;
+        border: 1px solid #bbb;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: .5s;
+    }
+    .button-red {
+        background-color: #fff0f0;
+        border-color: #db2323;
+        color: #db2323;
+        cursor: pointer;
+    }
+</style>
+<button id="btn1">
+    adiciona 'button-red'
+</button>
+<button id="btn2" class="button-red">
+    remove 'button-red'
+</button>
+<button id="btn3">
+    adiciona ou remove 'button-red'
+</button>
+<button id="btn4" class="button-red">
+    tem 'button-red'?
+</button>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('#btn1').click(() => $('#btn1').addClass('button-red'));
+    $('#btn2').click(() => $('#btn2').removeClass('button-red'));
+    $('#btn3').click(() => $('#btn3').toggleClass('button-red'));
+    $('#btn4').click(() => {
+        let temAClasse = $('#btn4').hasClass('button-red');
+        if (temAClasse) {
+            alert('Sim, o botão tem a classe BUTTON-RED');
+        }
+    })
+</script>
+

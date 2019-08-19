@@ -1,0 +1,85 @@
+<meta charset="utf-8">
+<h1>JS: var, let, const</h1>
+<script>
+
+/* 
+    modo restrito "use strict" proíbe:
+        "with",
+        a omissão da palavra-chave "var",
+        funções com parâmetros duplicados,
+        muda o comportamento da palavra-chave "this"
+*/
+"use strict";
+
+// Variáveis em JS
+var a = 999;
+if (true) {
+    var b = a;
+}
+console.log(b); //imprime 999
+
+// Variável JS com "let"
+let c = 888;
+if (true) {
+    let d = c;
+    console.log(d);
+}
+    //console.log(d) //Reference Error
+
+// Escopos vazios
+{
+    let dadosGigantes = [{nome: 'A', id: 1}, {nome: 'B', id: 2}];
+    console.log(dadosGigantes)
+}
+
+//não guarda fora
+
+// loops com var 
+for (var e = 0; e <= 5; e++) {
+    console.log('e: ', e);
+}
+
+// loops com let
+for (let f = 0; f <= 5; f++){
+    console.log('f: ', f);
+}
+    //console.log(f); //ReferenceError
+
+//Constantes
+const x = 0;
+//x = 2; // TypeError //Atribuição inválida
+const l =[12, 'Olá', true, 75.5];
+console.log('Minha lista: ', l);
+l.push('Gisele'); //adiciona no final
+l.unshift('Gato de botas'); //adiciona no começo
+console.log('Minha lista: ', l);
+//CONSTANTES NÃO PERMITEM REATRIBUIÇÃO DE VALORES//
+
+//Objetos no JavaScript
+const pessoa = {
+    nome : 'Hiago Granelli',
+    idade : 20,
+    sexo : 'M',
+    dobraIdade: function() {
+        console.log('Sua idade dobrada é: ', this.idade * 2);
+    }
+};
+
+console.log('Nome da pessoa: ', pessoa.nome); // propriedade do objeto
+pessoa.dobraIdade(); // método do objeto
+
+pessoa.nome = 'Henrique'; //OK alteração de propriedade
+pessoa.endereco = 'Rua Vergueiro'; //OK criação de novas propriedades
+// pessoa = {cidade: "Barueri"}; // TypeError
+
+{
+    let foo = function() {
+        console.log('Função foo ativada');
+    }
+
+    // Exportação de função para o escopo global
+    window.foo = foo;
+}
+console.log(foo());
+
+</script>

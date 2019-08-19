@@ -1,0 +1,59 @@
+<meta charset="utf8" />
+<h1>jQuery: Navegação na DOM | firstElementChild, lastElementChild, nextElementChild</h1>
+<div class="accordion">
+    <div class="acc">
+        <h4>Accordion 1</h4>
+        <div class="conteudo">
+            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat vel ipsum consequatur dolorum explicabo voluptates necessitatibus iure sint? Corporis velit nobis enim explicabo voluptatibus ut odit ea neque ullam tempore.</div>
+        </div>
+    </div>
+    <div class="acc">
+        <h4>Accordion 2</h4>
+        <div class="conteudo">
+            <div>Laudantium error non aut quasi esse debitis labore magni rerum dolore accusamus est, placeat inventore iste quam adipisci possimus corporis asperiores! Ipsa consectetur aliquam debitis enim tempora placeat commodi alias.</div>
+        </div>
+    </div>
+    <div class="acc">
+        <h4>Accordion 3</h4>
+        <div class="conteudo">
+            <div>Doloribus quo officiis ea, repellendus sequi magnam omnis excepturi quod ab dolore possimus reiciendis atque neque veniam illum est quia necessitatibus delectus sit voluptatibus esse quibusdam? Sit voluptatum laudantium obcaecati!</div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        padding: 60px;
+    }
+    .accordion {
+        width: 400px;
+    }
+    .acc {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 30px;
+    }
+    .acc > h4 {             /* > pega o filho direto */
+        border-bottom: 1px solid #ccc;
+        background: #eee;
+        margin: 0;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+    .acc > .conteudo {
+        overflow: hidden;
+        display: none;
+    }
+    .acc > .conteudo > div {
+        padding: 20px;
+        background: #fff;
+    }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('.accordion').on('click', '.acc > h4', function(){
+        $(this).next().slideToggle('fast');
+        $(this).parent().siblings().find('.conteudo').slideUp('fast');
+    });
+</script>

@@ -1,0 +1,106 @@
+<meta charset="utf-8" />
+<h1>jQuery: Navegação na DOM e EventBubbling (EventDelegation)</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Nome:</th>
+            <th>E-mail:</th>
+            <th>Cidade:</th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Adriana Fernandes</td>
+            <td>adriana.fernandes@gmail.com</td>
+            <td>São Paulo</td>
+            <td>
+                <button class="editar-item">Editar</button>
+            </td>
+            <td>
+                <button class="excluir-item">Excluir</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Tiago Oliveira</td>
+            <td>tiago.oliveira@gmail.com</td>
+            <td>Barueri</td>
+            <td>
+                <button class="editar-item">Editar</button>
+            </td>
+            <td>
+                <button class="excluir-item">Excluir</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Carlos Eduardo</td>
+            <td>carlos.eduardo@gmail.com</td>
+            <td>Osasco</td>
+            <td>
+                <button class="editar-item">Editar</button>
+            </td>
+            <td>
+                <button class="excluir-item">Excluir</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Marina Santos</td>
+            <td>marina.santos@gmail.com</td>
+            <td>Itapevi</td>
+            <td>
+                <button class="editar-item">Editar</button>
+            </td>
+            <td>
+                <button class="excluir-item">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<style>
+    body {
+        padding: 60px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    table {
+        width: 100%;
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+    }
+    th, td {
+        border-bottom: 2px solid #ddd;
+        border-right: 1px solid #ddd;
+        background: #eee;
+        text-align: left;
+        padding: 15px;
+    }
+    td {
+        background-color: #fff;
+        border-bottom-width: 1px;
+    }
+    td.editavel {
+        background-color: #fcf6eb;
+        color: #ffa305;
+        border-color: #ffa305;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    // exclusão
+    $('table').on('click', '.excluir-item', function(event){
+        if(confirm("Tem certeza que quer excluir?")) {
+            $(this).closest('tr').remove;
+        }
+    });
+    // edição
+    $('table').on('click', '.editar-item', function(event) {
+        if ($(this).text().trim() == 'Editar') {
+            $(this).text('Salvar Alterações');
+            $(this).parent().prevAll().addClass('editavel').prop('contentEditable', true);
+        }
+        else {
+            $(this).text('Editar');
+            $(this).parent().prevAll().removeClass('editavel').prop('contentEditable', false);
+        }
+    })
+</script>

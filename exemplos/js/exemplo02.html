@@ -1,0 +1,38 @@
+<meta charset="utf-8" />
+<h1>JS: document e window</h1>
+<p id="meuParagrafo">
+    Este é um parágrafo que será modificado em 3 segundos
+</p>
+<script>
+//Metodo antigo (não recomendado mais)
+// meuParagrafo.innerText = "O parágrafo foi alterado via JS"
+
+//ES5/6 preferível o querySelector()
+//document.getElementById('meuParagrafo').innerText = "Alterado!!!"
+ const paragrafo = document.querySelector('#meuParagrafo');
+ paragrafo.innerHTML = ("<b>Parágrafo</b> alterado")
+// setTimeout() = executa uma função depois de determinado tempo
+// e apenas uma vez 
+/*     setTimeout(function() {
+        paragrafo.textContent = "Alterado depois de 3 segundos"
+    }, 3000); */
+
+    // setInterval() = executa uma função depois de determinado tempo
+    // varias vezes
+    let contador = 0;
+    setInterval(function(){
+    contador++
+    paragrafo.textContent = `Alterado pela ${contador} vez`;
+    }, 2000);
+    //Concatenação
+    /* var mensagem = "Dados pessoais do cliente: <br>";
+    mensagem += "Nome: " + nome + "<br>"; */
+    //Template String
+    var mensagem = `
+        Dados pessoais do cliente:
+        Nome: Adriana
+        Idade: 22
+    `
+    document.write(mensagem); //Exibe na tela branca
+    alert(mensagem); //Exibe um pop-up 
+</script>

@@ -1,0 +1,52 @@
+<meta charset="utf-8" />
+<h1>JS: classList</h1>
+<style>
+    button {
+        background-color: #ddd;
+        border: 1px solid #bbb;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 3s;
+    }
+    .button-red {
+        background-color: #fff0f0;
+        border-color: #db2323;
+        color: #db2323;
+        cursor: pointer;
+    }
+</style>
+<button id="btn1">
+    adiciona 'button-red'
+</button>
+<button id="btn2" class="button-red">
+    remove 'button-red'
+</button>
+<button id="btn3">
+    adiciona ou remove 'button-red'
+</button>
+<button id="btn4" class="button-red">
+    tem 'button-red'?
+</button>
+
+<script>
+    /* Guardar as referencias ds objetos HTML */
+    const btn1 = document.querySelector('#btn1');
+    const btn2 = document.querySelector('#btn2');
+    const btn3 = document.querySelector('#btn3');
+    const btn4 = document.querySelector('#btn4');
+
+    btn1.onclick = () => btn1.classList.add('button-red');
+    btn2.onclick = () => btn2.classList.remove('button-red');
+    btn3.onclick = () => btn3.classList.toggle('button-red');
+    btn4.onclick = () => {
+        let temAClass = btn4.classList.contains('button-red');
+        if (temAClass) {
+            alert('Sim, o botão tem a classe BUTTON RED');
+        }
+    }
+    // operador ternário = (condicao) ? "reposta 1" : "resposta 2"
+    let idade = 23;
+    let mensagem =(idade > 20) ? "mais de 20 anos" : "menos de 20 anos";
+    alert(mensagem);
+</script>

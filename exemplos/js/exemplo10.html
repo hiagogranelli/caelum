@@ -1,0 +1,20 @@
+<meta charset="utf-8" />
+<h1>AJAX Nutellat</h1>
+<button id="btnCarregar">Carregar conteúdo</button>
+<div id="conteudoCarregado">
+    <!-- Conteúdo será carregado aqui -->
+</div>
+<script>
+
+    const btnCarregar = document.querySelector('#btnCarregar');
+    const conteudoCarregado = document.querySelector('#conteudoCarregado');
+    btnCarregar.addEventListener('click', event => {
+        fetch('https://jhonatanjacinto.com/teste.php')
+        .then(response => response.text())
+        .then(respostaHTML => conteudoCarregado.innerHTML = respostaHTML)
+        .catch(err => console.error(err));
+
+        conteudoCarregado.innerHTML = 'Carregando a parada toda...';
+    });
+
+</script>

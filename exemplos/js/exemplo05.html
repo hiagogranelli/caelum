@@ -1,0 +1,65 @@
+<meta charset="utf-8" />
+<h1>JS: addEventListener</h1>
+<style>
+    button {
+        background-color: #ddd;
+        border: 1px solid #bbb;
+        padding: 8px 15px;
+        border-radius: 5px;
+    }
+    button:focus {
+        box-shadow: 0 0 10px #db2323;
+    }
+</style>
+<button id="btn1" tab-index="0">Click ou Barra de Espaço</button>
+<button id="btn2" tab-index="0">Click</button>
+<button id="btn3" tab-index="0">Hover do mouse ou Barra de Espaço</button>
+<button id="btn4" tab-index="0">Shift</button> 
+
+<script>
+
+    /* Guardar as referencias dos botões */
+    const btn1 = document.querySelector('#btn1');
+    const btn2 = document.querySelector('#btn2');
+    const btn3 = document.querySelector('#btn3');
+    const btn4 = document.querySelector('#btn4');
+
+    function digaClick() {
+        alert('Cliiiiick!!!!');
+    }
+    function digaEspaco(event) {
+        if (event.key === ' ') {
+            event.preventDefault(); // impede o comportamente padrão de um elemento
+        alert('Barra de Espaçoooo!!!');
+        }
+    }
+    function digaShift(event) {
+        if (event.key === 'Shift') {
+            alert('Shiiiiift!!!');   
+        }
+    }
+    function digaHover() {
+        alert('Hoooover!!!!');
+    }
+
+    /* function enviaEmail() {
+        alert('Enviando e-mails...')
+    }
+
+    function guardaNoBanco() {
+        alert('Guardando no banco de dados...')
+    }
+
+    // addEventListener(): permite enviar mais de uma função/*  */
+    
+    btn1.addEventListener('click', digaClick);
+    btn1.addEventListener('keyup', digaEspaco);
+
+    btn2.addEventListener('click', digaClick);
+
+    btn3.addEventListener('keyup', digaEspaco);
+    btn3.addEventListener('mouseenter', digaHover);
+
+    btn4.addEventListener('keyup', digaShift);
+
+</script>

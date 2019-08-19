@@ -1,0 +1,51 @@
+<meta charset="utf-8" />
+<h1>JS: querySelector() e querySelectorAll()</h1>
+<style>
+    p {
+        padding: 15px;
+        border-radius: 5px;
+        background: #eee;
+        border: 1px solid #aaa;
+    }
+    .red {
+        border-color: #db2323;
+        color: #db2323;
+        background-color: #fff0f0;
+    }
+</style>
+<p>Parágrafo 1</p>
+<p class="red">Parágrafo 2</p>
+<p>Parágrafo 3</p>
+<p>Parágrafo 4</p>
+<p class="red">Parágrafo 5</p>
+<p>Parágrafo 6</p>
+<p class="red">Parágrafo 7</p>
+<p>Parágrafo 8</p>
+<p>Parágrafo 9</p>
+<p id="p10">Parágrafo 10</p>
+
+<script>
+    const p = document.querySelector('#p10');
+    p.textContent = 'Item alterado!!!';
+    p.style.fontSize = '30px';
+    p.style.fontStyle = 'italic';
+    p.style.fontWeight = 'bold';
+
+    // querySelectorAll()
+    const pred = document.querySelectorAll('.red');
+    /* for (let i = 0; i < pred.length; i++) {
+        pred[i].textContent = "Trocar textos paragrafos red";
+    } */
+    pred.forEach(function(item){
+        item.textContent = "Texto alterado nos parágrafos RED";
+    });
+
+    // ES6 Arrow Function
+    pred.forEach((item) => {
+        item.textContent = "Texto alterado de novo!!!!"
+    });
+
+    //ARROW FUNCTION
+    /* let soma = (v1, v2) => v1 + v2;
+    alert(soma(5, 5)); */
+</script>

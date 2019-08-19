@@ -1,0 +1,130 @@
+<meta charset="utf-8" />
+<h1>JS: manipulação da DOM</h1>
+<form action="" id="form1">
+    <div class="campo">
+        <label for="">
+            * Nome:
+            <br>
+            <input type="text" class="obrigatorio" data-mensagem="Nome é obrigatório!">
+        </label>
+    </div>
+    <div class="campo">
+        <label for="">
+            * E-mail:
+            <br>
+            <input type="text" class="obrigatorio" data-mensagem="E-mail é obrigatório!">
+        </label>
+    </div>
+    <div class="campo">
+        <label for="">
+            * Telefone:
+            <br>
+            <input type="text" class="">
+        </label>
+    </div>
+    <div class="campo">
+        <button type="submit">
+            Enviar
+        </button>
+    </div>
+</form>
+
+<style>
+    body {
+        padding: 60px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    form {
+        width: 400px;
+        margin-top: 20px;
+    }
+    input[type=text] {
+        width: 100%;
+        border:  1px solid #ccc;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+    button {
+        border-radius: 5px;
+        border: none;
+        background: green;
+        color: #fff;
+        padding: 15px 35px;
+    }
+    .campo {
+        margin-bottom: 10px;
+    }
+    .msg {
+        padding: 15px 25px;
+        border-radius: 5px;
+        background: #f2f2f2;
+        border: 1px solid #ddd;
+    }
+    .msg-error, input.destacar {
+        border-color: #db2323;
+        color: #db2323;
+        background: #fff0f0;
+        margin-bottom: 10px;    
+    }
+    .msg-success {
+        border-color: #30cf6c;
+        color: #30cf6c;
+        background: #e3ffee;
+        margin-bottom: 10px;
+    }
+</style>
+
+<script>
+    
+    // Arrow Function NÃO mantém escopo para o comando "this"
+    const form = document.querySelector('#form1');
+    const divMsg = document.createElement('div');
+    divMsg.classList.add('msg', 'msg-error');
+
+    form.addEventListener('submit', function(event){
+        event.preventDefault(); // bloqueia o envio de um formulario
+        // pega os campos obrigatórios SOMENTE do formulário postado
+        const camposObrigatorios = this.querySelectorAll('.obrigatorio')
+        let isFormValido = true;
+        const mensagensErro = [];
+
+        camposObrigatorios.forEach(campo => {
+            let isVazio = campo.value.trim().length === 0;
+            if (isVazio === true) {
+                campo.classList.add('destacar')
+                isFormValido = false;
+                let mensagem = campo.dataset.mensagem;
+                mensagensErro.push(mensagem);
+            }
+            else {
+                campo.classList.remove('destacar');
+            }
+        });
+        //se isFormVAlido é false HÁ CAMPOS A SEREM PREENCHIDOS
+        if(isFormValido === false) {
+            divMsg.classList.replace('msg-success', 'msg-error');
+            divMsg.innerHTML = `
+            <b>Atenção</b><br>
+            Preencha os campos sinalizados: <br>
+            ${ mensagensErro.join("<br>")}
+            `;
+        }
+        else {
+            divMsg.classList.replace('msg-error', 'msg-success');
+            divMsg.textContent = "Formulário enviado com sucesso!"
+        }
+        form.prepend(divMsg); //insere no inicio e dentro do form
+    });
+    
+    
+    // insertBefore(elementoNovo, elementoReferencia)
+    // document.body.insertBefore(divMsg, form);
+    // form.appendChild(divMsg); //insere no final e dentro do form
+    /* 
+    insertAdjacentElement(posicao, elementoNovo)
+    * 'beforebegin': antes do começo da tag de referencia
+    * 'afterbegin' : depois do inicio da tag de referencia
+    * 'beforeend' : antes do FIM da tag de referencia
+    * 'afterend' : depois do FIM da tag de referencia
+    */
+    </script>
